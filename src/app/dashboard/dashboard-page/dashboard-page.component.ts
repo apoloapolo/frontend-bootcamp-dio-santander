@@ -18,8 +18,12 @@ export class DashboardPageComponent implements OnInit {
     this.fetchStocks();
   }
 
-  async fetchStocks(): Promise<void> {
-    this.stocks = await this.dashboardService.getStocks();
-    console.log(this.stocks);
+  fetchStocks() {
+    this.dashboardService.getStocks().subscribe(
+      stocks => {
+        this.stocks = stocks as Stock[];
+        console.log(this.stocks);
+      }
+     );
   }
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import Stock from '../shared/models/stock-model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class DashboardService {
 
   constructor(private http: HttpClient) { }
 
-  async getStocks(): Promise<Stock[]> {
-    return this.http.get<Stock[]>(`${this.baseUrl}/stock`).toPromise();
+  getStocks(): Observable<Stock[]> {
+    return this.http.get<Stock[]>(`${this.baseUrl}/stock`);
   }
 }
